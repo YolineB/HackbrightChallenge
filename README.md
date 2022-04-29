@@ -4,15 +4,16 @@ Take home challenge for HackBright, will continue to work on features
 
 # List of Features to do:
 
-[x] log in
-[ ] registration
-[x] homepage
-[x] date selector
-[ ] time selector
-[x] alert to not book same day
-[ ] build data base
-[ ] see users own events
-[ ] reserve open appts
+* [x] log in
+* [ ] registration
+* [x] homepage
+* [x] date selector
+* [ ] time selector
+* [x] alert to not book same day
+* [ ] build data base
+* [ ] see users own events
+* [ ] reserve open appts
+* [ ] style
 
 #### Set Up 🛠️
 1. clone repository 

@@ -5,7 +5,7 @@ Take home challenge for HackBright, will continue to work on features
 # List of Features to do:
 
 * [x] log in
-* [ ] registration
+* [x] registration
 * [x] homepage
 * [x] date selector
 * [ ] time selector

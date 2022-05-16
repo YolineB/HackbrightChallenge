@@ -1,5 +1,25 @@
 """CRUD operations """
 
+from model import db, User, Reservations, connect_to_db
+
+def register_user(username, fname):
+    """register new user"""
+
+    user = User(username=username, fname=fname)
+
+    return user
+
+
+def check_username(username):
+    """check if username is in db"""
+
+    check_user = User.query.filter(User.username == username).first()
+  
+    if check_user is not None:
+        return check_user
+  
+    return None
+
 def day_of_time_slots():
     """generate time slots when date is instantiated """
 
@@ -36,3 +56,4 @@ def check_date(date):
 
 if __name__ == '__main__':
     from server import app
+    connect_to_db(app)

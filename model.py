@@ -1,7 +1,6 @@
 """Models for Melon Reservation"""
 
 from flask_sqlalchemy import SQLAlchemy
-from server import app
 
 db = SQLAlchemy()
 
@@ -27,7 +26,7 @@ class Reservations(db.Model):
     """"Create a reservation """
     __tablename__ = "reservations"
 
-    reservation_id = db.Column(db.Integer, autoincrement=True)
+    reservation_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     day_of = db.Column(db.String(20), nullable=False)
     time_slot = db.Column(db.String(20), nullable=False)
@@ -53,5 +52,6 @@ def connect_to_db(app, db_URI="postgresql:///melons_reservation_data"):
 
     print("Connected to melons_reservation_data!")
 if __name__ == "__main__":
+    from server import app
     connect_to_db(app)
     db.create_all()

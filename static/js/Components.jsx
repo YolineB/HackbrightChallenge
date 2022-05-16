@@ -1,7 +1,8 @@
 function UserSignIn({onSignIn}) {
 
     const [userName, setUserName] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const [regUserName, setRegUsername] = React.useState('');
+    const [firstName, setFirstName] = React.useState('')
     
     const logIn = (evt) =>{
         evt.preventDefault()
@@ -11,27 +12,40 @@ function UserSignIn({onSignIn}) {
 
     const registerUser = (evt) => {
         evt.preventDefault()
-        console.log('register')
+        
+        const formInputs ={
+            regUserName: regUserName,
+            firstName: firstName
+          };
+        
+          fetch('/register_user', {
+            method: 'POST',
+            body: JSON.stringify(formInputs),
+            headers: { 
+              'Content-Type' : 'application/json',
+            },
+          })
+            .then(response => response.json())
+            .then(data => {
+                if (data === 'registered') {
+                    alert('registered!');
+                    onSignIn(regUserName);
+                } else {
+                    alert('username is already taken, please try again')
+                }
+            })
     }
 
     return (
         <React.Fragment>
             <form onSubmit={ (evt) => {logIn(evt)} }>
                 <h2>Log In</h2>
-                <label>Enter your name:
+                <label>Enter your username:
                     <input 
                         id="username-textbox" 
                         placeholder="username"
                         onChange={(event) => setUserName(event.target.value)} 
                         type="text">
-                    </input>    
-                </label>
-                <label>Enter your password:
-                    <input 
-                        id="password" 
-                        placeholder="password"
-                        onChange={(event) => setPassword(event.target.value)} 
-                        type="password">
                     </input>    
                 </label>
                     <div>
@@ -43,13 +57,22 @@ function UserSignIn({onSignIn}) {
             <h1>Or Register Below</h1>
             <form onSubmit={registerUser}>
                 <label> Enter your first name
-                    <input type="text" placeholder="First name" aria-label="First name"/>
+                    <input 
+                        type="text" 
+                        placeholder="First name" 
+                        aria-label="First name"
+                        onChange={(event) => setFirstName(event.target.value)}/>
                 </label>
-                <label> Enter a password
-                    <input name="password" type="password" placeholder="password"/>
+                <label> Enter a username
+                <input 
+                    type="text" 
+                    placeholder="User Name" 
+                    aria-label="User name"
+                    onChange={(event) => setRegUsername(event.target.value)}/>
                 </label>
                 <div>
                 <button id="register" type="submit" className='btn-primary'> 
+                Register 
                 </button>
                 </div>
             </form>

@@ -4,6 +4,7 @@ function App(){
     const [userID, setUserID] = React.useState(null)
 
     const onSignIn = (userID) => {
+        console.log('back at app w/ registerting userID')
         setUserID(userID)
     }
    
